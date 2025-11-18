@@ -73,16 +73,6 @@ A 3D endless runner game inspired by Temple Run, built from scratch using OpenGL
   - Lerped movement for smooth following (5x lerp speed)
   - Handles 90° turns without jarring transitions
 
-### Collision Detection
-- **AABB (Axis-Aligned Bounding Box)**
-  - Dynamic player hitbox (changes size when sliding)
-  - Smart obstacle bypass system
-  - Minimum Translation Vector (MTV) for push-out resolution
-  - Separate collision boxes for walls and obstacles
-
-- **Hitbox Dimensions**
-  - Standing: 0.7 × 1.8 × 0.5 units
-  - Sliding: 0.7 × 1.0 × 0.5 units (40% height reduction)
 
 ### Animation System
 - **Three Character States**
@@ -145,25 +135,6 @@ Temple-Run-OpenGL/
 ### Animations
 - Character animations created using **Mixamo** (https://mixamo.com)
 
-## Performance Optimizations
-
-- **Memory Management**
-  - Deque-based block storage for O(1) add/remove operations
-  - Object pooling for coins (marked collected, not deleted)
-  - Maximum 60 blocks in memory at once
-  - Automatic cleanup of distant objects
-
-- **Rendering Pipeline**
-  1. Opaque geometry (blocks, walls, obstacles)
-  2. Animated character (most expensive, done once)
-  3. Coins with simple rotation
-  4. Skybox rendered last (benefits from early Z-rejection)
-
-- **Resource Sharing**
-  - Single cube mesh shared for all box-shaped objects
-  - One texture per material type
-  - Global model pointers for coins and environment
-  - Bone matrix array reused each frame
 
 ## Build Requirements
 
@@ -175,29 +146,6 @@ Temple-Run-OpenGL/
 - **stb_image** for texture loading
 - **C++11** compatible compiler
 
-## Technical Specifications
-
-### Physics
-- **Forward Speed**: 6.0 units/second (base)
-- **Jump Velocity**: 5.0 units/second
-- **Gravity**: -12.0 units/second²
-- **Slide Duration**: 1.5 seconds
-- **Turn Angle**: 90° instant rotation
-
-### World Generation
-- **Block Size**: 5×5 units
-- **Wall Height**: 2.0 units
-- **Generation Distance**: 50 blocks ahead
-- **Cleanup Distance**: 10 blocks behind
-- **Turn Frequency**: Every 20 blocks
-- **Obstacle Frequency**: Every 4 blocks (with exceptions)
-
-### Rendering
-- **Window Resolution**: 1280×720 default
-- **Field of View**: 50°
-- **Max Bones**: 100 per model
-- **Bone Influences**: 4 per vertex
-- **View Distance**: 600 units
 
 ## License
 
